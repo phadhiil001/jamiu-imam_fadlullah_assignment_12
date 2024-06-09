@@ -9,7 +9,7 @@ export default {
   argTypes: {
     disabled: {
       control: "boolean",
-      defaultValue: false,
+      // defaultValue: false,
     },
     children: {
       control: "text",
@@ -37,5 +37,6 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   children: "Disabled Section Content",
   disabled: true,
-  backgroundColor: "#f0f0f0",
+  backgroundColor: "#2b8d7e",
 };
+
