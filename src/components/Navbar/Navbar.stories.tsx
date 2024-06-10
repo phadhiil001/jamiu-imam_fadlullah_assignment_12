@@ -8,6 +8,10 @@ export default {
   tags: ["autodocs"],
   argTypes: {
     backgroundColor: { control: "color" },
+    disabled: {
+      // Adding a control for the disabled prop
+      control: "boolean",
+    },
   },
 } as Meta;
 
@@ -20,14 +24,17 @@ Default.args = {
     { label: "About", url: "/about" },
     { label: "Contact", url: "/contact" },
   ],
+  isVisible: true,
+  disabled: false,
 };
 
-export const CustomBackground = Template.bind({});
-CustomBackground.args = {
+export const Disabled = Template.bind({});
+Disabled.args = {
   links: [
     { label: "Home", url: "/" },
     { label: "About", url: "/about" },
     { label: "Contact", url: "/contact" },
   ],
-  backgroundColor: "#007bff",
+  isVisible: true,
+  disabled: true,
 };
