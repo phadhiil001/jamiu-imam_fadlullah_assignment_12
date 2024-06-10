@@ -8,7 +8,17 @@ const meta: Meta<typeof MyButton> = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  //   args: { onClick: action("clicked") },
+  argTypes: {
+    backgroundColor: {
+      control: "color",
+    },
+    disabled: {
+      control: "boolean",
+    },
+    children: {
+      control: "text",
+    },
+  },
 } satisfies Meta<typeof MyButton>;
 
 export default meta;
@@ -18,6 +28,7 @@ export const Primary: Story = {
   args: {
     children: "I am a button",
     disabled: false,
+    isVisible: true,
   },
 };
 
@@ -25,5 +36,7 @@ export const Disabled: Story = {
   args: {
     children: "I am a button",
     disabled: true,
+    backgroundColor: "#ff5733",
+    isVisible: true,
   },
 };

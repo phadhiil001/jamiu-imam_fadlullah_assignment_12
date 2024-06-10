@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { MyButtonProps } from "./MyButton.types";
 
-const Button = styled.button`
+const Button = styled.button<MyButtonProps>`
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
-  background-color: #007bff;
+  background-color: ${({ backgroundColor }) => backgroundColor || "#007bff"};
   border: none;
   border-radius: 4px;
+  visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
 
   &:disabled {
     background-color: #ccc;

@@ -37,6 +37,5 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   children: "Disabled Section Content",
   disabled: true,
-  backgroundColor: "#2b8d7e",
+  backgroundColor: "#f0f0f0",
 };
-
