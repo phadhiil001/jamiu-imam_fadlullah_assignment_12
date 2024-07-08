@@ -26,7 +26,7 @@ const Button = styled.button<MyButtonProps>`
 `;
 
 const MyButton = (props: MyButtonProps) => {
-  return <Button {...props}>{props.children}</Button>;
+  return <Button data-testid="MyButton" {...props}>{props.children}</Button>;
 };
 
 export default MyButton;

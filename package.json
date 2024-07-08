@@ -22,7 +22,10 @@
     "moduleNameMapper": {
       ".(css|less|scss)$": "identity-obj-proxy"
     },
-    "modulePathIgnorePatterns": ["node_modules", "jest-test-results.json"]
+    "modulePathIgnorePatterns": [
+      "node_modules",
+      "jest-test-results.json"
+    ]
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -44,6 +47,7 @@
     "@storybook/react": "^8.1.6",
     "@storybook/react-vite": "^8.1.6",
     "@storybook/test": "^8.1.6",
+    "@storybook/test-runner": "^0.19.0",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@types/jest": "^29.5.12",

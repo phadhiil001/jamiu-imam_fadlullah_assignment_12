@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import MyButton from "./MyButton";
+import { userEvent, within } from "@storybook/test";
 
 const meta: Meta<typeof MyButton> = {
   title: "Components/MyButton",
@@ -29,6 +30,11 @@ export const Primary: Story = {
     children: "I am a button",
     disabled: false,
     isVisible: true,
+  },
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.hover(canvas.getByTestId("MyButton"));
   },
 };
 
