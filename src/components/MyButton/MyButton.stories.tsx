@@ -45,4 +45,8 @@ export const Disabled: Story = {
     backgroundColor: "#ff5733",
     isVisible: true,
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.hover(canvas.getByTestId("MyButton"));
+  },
 };
