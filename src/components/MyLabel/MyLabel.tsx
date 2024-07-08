@@ -1,18 +1,5 @@
-// import styled from "styled-components";
-// import { MyLabelProps } from "./MyLabel.types";
-
-// const Label = styled.label<MyLabelProps>`
-//   font-size: 16px;
-//   color: ${(props) => props.disabled ? "#f38282" : "#2580d0"};
-//   font-weight: ${(props) => (props.bold ? "bold" : "normal")};
-// `;
-
-// const MyLabel = ({ children, ...rest }: MyLabelProps) => {
-//   return <Label {...rest}>{children}</Label>;
-// };
-
-// export default MyLabel;
-
+// MyLabel.tsx
+import React from "react";
 import styled from "styled-components";
 import { MyLabelProps } from "./MyLabel.types";
 
@@ -54,4 +41,22 @@ const StyledLabel = styled.label<MyLabelProps>`
   }
 `;
 
-export default StyledLabel;
+const MyLabel = ({
+  children,
+  disabled,
+  onClick,
+  backgroundColor,
+}: MyLabelProps) => {
+  return (
+    <StyledLabel
+      disabled={disabled}
+      onClick={!disabled ? onClick : undefined}
+      backgroundColor={backgroundColor}
+      data-testid="my-label"
+    >
+      {children}
+    </StyledLabel>
+  );
+};
+
+export default MyLabel;
