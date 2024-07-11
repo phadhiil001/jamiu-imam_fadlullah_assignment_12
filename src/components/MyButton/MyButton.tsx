@@ -25,7 +25,7 @@ const Button = styled.button<MyButtonProps>`
   }
 `;
 
-export function sum(a: number, b: number){
+export function sum(a: number, b: number) {
   return a + b;
 }
 
@@ -41,3 +41,20 @@ const MyButton = (props: MyButtonProps) => {
 };
 
 export default MyButton;
+
+// Function to determine button styles
+export function getButtonStyles(
+  disabled: boolean,
+  backgroundColor: string | undefined
+): { backgroundColor: string; cursor: string } {
+  if (disabled) {
+    return {
+      backgroundColor: "#ccc",
+      cursor: "not-allowed",
+    };
+  }
+  return {
+    backgroundColor: backgroundColor || "#007bff",
+    cursor: "pointer",
+  };
+}

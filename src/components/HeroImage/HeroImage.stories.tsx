@@ -33,7 +33,13 @@ Primary.args = {
 };
 Primary.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.hover(canvas.getByTestId("hero-image"));
+  const heroImage = canvas.getByTestId("hero-image");
+
+  // Hover state
+  await userEvent.hover(heroImage);
+
+  // Click event
+  await userEvent.click(heroImage);
 };
 
 export const Disabled = Template.bind({});
@@ -44,5 +50,8 @@ Disabled.args = {
 };
 Disabled.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await userEvent.hover(canvas.getByTestId("hero-image"));
+  const heroImage = canvas.getByTestId("hero-image");
+
+  await userEvent.click(heroImage);
+  await userEvent.hover(heroImage);
 };

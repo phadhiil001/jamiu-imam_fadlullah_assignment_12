@@ -59,3 +59,22 @@ const MyLabel = ({
 };
 
 export default MyLabel;
+
+// Function to determine label styles
+export function getLabelStyles(
+  disabled: boolean,
+  backgroundColor: string | undefined
+): { color: string; backgroundColor: string; cursor: string } {
+  if (disabled) {
+    return {
+      color: "#535657",
+      backgroundColor: "#ccc",
+      cursor: "not-allowed",
+    };
+  }
+  return {
+    color: "#53bee5",
+    backgroundColor: backgroundColor || "transparent",
+    cursor: "pointer",
+  };
+}

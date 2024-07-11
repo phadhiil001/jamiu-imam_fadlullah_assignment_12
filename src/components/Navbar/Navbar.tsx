@@ -69,3 +69,8 @@ function Navbar({ links, backgroundColor, isVisible, disabled }: NavbarProps) {
 }
 
 export default Navbar;
+
+// Function to determine if a link should be clickable
+export function isLinkClickable(disabled: boolean | null): boolean {
+  return !disabled;
+}

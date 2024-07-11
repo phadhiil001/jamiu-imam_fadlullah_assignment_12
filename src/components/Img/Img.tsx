@@ -73,3 +73,8 @@ const MyImg = ({
 };
 
 export default MyImg;
+
+// Function to check if the image is visible
+export function isVisible(visible: boolean): boolean {
+  return visible;
+}

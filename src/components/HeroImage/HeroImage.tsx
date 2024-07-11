@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { HeroImageProps } from "./HeroImage.types";
 
@@ -50,4 +51,14 @@ export function HeroImage({
       <HeroContent>{children}</HeroContent>
     </HeroWrapper>
   );
+}
+
+// Function to check if a given string is a valid URL
+export function isValidUrl(url: string): boolean {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
 }
