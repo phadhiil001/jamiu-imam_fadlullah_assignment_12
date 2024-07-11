@@ -25,6 +25,10 @@ const Button = styled.button<MyButtonProps>`
   }
 `;
 
+export function sum(a: number, b: number){
+  return a + b;
+}
+
 const MyButton = (props: MyButtonProps) => {
   return (
     <Button
