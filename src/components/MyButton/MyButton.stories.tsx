@@ -34,7 +34,7 @@ export const Primary: Story = {
 
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.hover(canvas.getByTestId("MyButton"));
+    await userEvent.click(canvas.getByTestId("MyButton"));
   },
 };
 
