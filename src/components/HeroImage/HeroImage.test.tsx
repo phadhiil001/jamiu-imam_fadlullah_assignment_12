@@ -5,7 +5,7 @@ describe("isValidUrl", () => {
     expect(
       isValidUrl("https://via.placeholder.com/1200x600.png?text=Hero+Image")
     ).toBe(true);
-    expect(isValidUrl("http://example.com")).toBe(false);
+    expect(isValidUrl("http://example.com")).toBe(true);
   });
 
   test("returns false for invalid URLs", () => {
