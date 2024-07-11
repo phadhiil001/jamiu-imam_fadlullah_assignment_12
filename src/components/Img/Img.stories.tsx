@@ -1,11 +1,12 @@
 import { StoryFn, Meta } from "@storybook/react";
-
-import ImgStyled from "./Img";
+import MyImg from "./Img";
 import { ImgProps } from "./Img.types";
+import { action } from "@storybook/addon-actions";
+import { within, userEvent } from "@storybook/test";
 
 export default {
   title: "Components/Img",
-  component: ImgStyled,
+  component: MyImg,
   argTypes: {
     visible: {
       control: "boolean",
@@ -13,7 +14,7 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn<ImgProps> = (args) => <ImgStyled {...args} />;
+const Template: StoryFn<ImgProps> = (args) => <MyImg {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -23,8 +24,22 @@ Primary.args = {
   disabled: false,
 };
 
+Primary.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const imgComponent = canvas.getByTestId("img-component");
+  await userEvent.click(imgComponent);
+  action("Image clicked")();
+};
+
 export const Disabled = Template.bind({});
 Disabled.args = {
   ...Primary.args,
   disabled: true,
+};
+
+Disabled.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const imgComponent = canvas.getByTestId("img-component");
+  await userEvent.click(imgComponent);
+  action("Image clicked")();
 };

@@ -1,3 +1,4 @@
+// Img.tsx
 import styled, { css } from "styled-components";
 import { ImgProps } from "./Img.types";
 
@@ -8,17 +9,29 @@ const ImgStyled = styled.img<ImgProps>`
     visible ? "block" : "none"}; // Conditionally set display property
   border: none;
 
-  ${({ defaultTextColor }) => defaultTextColor && `color: ${defaultTextColor};`}
+  ${({ defaultTextColor }) =>
+    defaultTextColor &&
+    css`
+      color: ${defaultTextColor};
+    `}
   ${({ defaultBackgroundColor }) =>
-    defaultBackgroundColor && `background-color: ${defaultBackgroundColor};`}
+    defaultBackgroundColor &&
+    css`
+      background-color: ${defaultBackgroundColor};
+    `}
   ${({ disabled, disabledTextColor, disabledBackgroundColor }) =>
     disabled &&
     css`
       cursor: not-allowed;
       filter: grayscale(100%);
-      ${disabledTextColor && `color: ${disabledTextColor};`}
+      ${disabledTextColor &&
+      css`
+        color: ${disabledTextColor};
+      `}
       ${disabledBackgroundColor &&
-      `background-color: ${disabledBackgroundColor};`}
+      css`
+        background-color: ${disabledBackgroundColor};
+      `}
     `}
 
   @media (min-width: 768px) {
@@ -34,4 +47,29 @@ const ImgStyled = styled.img<ImgProps>`
   }
 `;
 
-export default ImgStyled;
+const MyImg = ({
+  src,
+  alt,
+  visible,
+  disabled,
+  defaultTextColor,
+  defaultBackgroundColor,
+  disabledTextColor,
+  disabledBackgroundColor,
+}: ImgProps) => {
+  return (
+    <ImgStyled
+      src={src}
+      alt={alt}
+      visible={visible}
+      disabled={disabled}
+      defaultTextColor={defaultTextColor}
+      defaultBackgroundColor={defaultBackgroundColor}
+      disabledTextColor={disabledTextColor}
+      disabledBackgroundColor={disabledBackgroundColor}
+      data-testid="img-component"
+    />
+  );
+};
+
+export default MyImg;

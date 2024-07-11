@@ -37,20 +37,28 @@ const NavbarLogo = styled.div`
 `;
 
 function Navbar({ links, backgroundColor, isVisible, disabled }: NavbarProps) {
+  const handleLinkClick = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault(); // Always prevent default behavior in Storybook
+  };
+
   return (
     <NavbarWrapper
       backgroundColor={backgroundColor}
       isVisible={isVisible}
       disabled={disabled}
+      data-testid="navbar"
     >
       <NavbarLogo>FJamiu-Imam</NavbarLogo>
       <NavbarLinks>
         {links.map((link, index) => (
           <NavbarLink
             key={index}
-            href={!disabled ? link.url : undefined}
-            onClick={!disabled ? undefined : (e) => e.preventDefault()}
-            disabled={disabled}
+            href={link.url}
+            onClick={handleLinkClick}
+            disabled={link.disabled || disabled}
+            data-testid={`navbar-link-${index}`}
           >
             {link.label}
           </NavbarLink>
