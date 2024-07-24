@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import MyButton from "./MyButton";
+import { userEvent, within } from "@storybook/test";
 
 const meta: Meta<typeof MyButton> = {
   title: "Components/MyButton",
@@ -30,6 +31,11 @@ export const Primary: Story = {
     disabled: false,
     isVisible: true,
   },
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByTestId("MyButton"));
+  },
 };
 
 export const Disabled: Story = {
@@ -38,5 +44,9 @@ export const Disabled: Story = {
     disabled: true,
     backgroundColor: "#ff5733",
     isVisible: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.hover(canvas.getByTestId("MyButton"));
   },
 };

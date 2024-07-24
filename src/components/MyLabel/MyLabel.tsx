@@ -1,18 +1,4 @@
-// import styled from "styled-components";
-// import { MyLabelProps } from "./MyLabel.types";
-
-// const Label = styled.label<MyLabelProps>`
-//   font-size: 16px;
-//   color: ${(props) => props.disabled ? "#f38282" : "#2580d0"};
-//   font-weight: ${(props) => (props.bold ? "bold" : "normal")};
-// `;
-
-// const MyLabel = ({ children, ...rest }: MyLabelProps) => {
-//   return <Label {...rest}>{children}</Label>;
-// };
-
-// export default MyLabel;
-
+// MyLabel.tsx
 import styled from "styled-components";
 import { MyLabelProps } from "./MyLabel.types";
 
@@ -54,4 +40,41 @@ const StyledLabel = styled.label<MyLabelProps>`
   }
 `;
 
-export default StyledLabel;
+const MyLabel = ({
+  children,
+  disabled,
+  onClick,
+  backgroundColor,
+}: MyLabelProps) => {
+  return (
+    <StyledLabel
+      disabled={disabled}
+      onClick={!disabled ? onClick : undefined}
+      backgroundColor={backgroundColor}
+      data-testid="my-label"
+    >
+      {children}
+    </StyledLabel>
+  );
+};
+
+export default MyLabel;
+
+// Function to determine label styles
+export function getLabelStyles(
+  disabled: boolean,
+  backgroundColor: string | undefined
+): { color: string; backgroundColor: string; cursor: string } {
+  if (disabled) {
+    return {
+      color: "#535657",
+      backgroundColor: "#ccc",
+      cursor: "not-allowed",
+    };
+  }
+  return {
+    color: "#53bee5",
+    backgroundColor: backgroundColor || "transparent",
+    cursor: "pointer",
+  };
+}

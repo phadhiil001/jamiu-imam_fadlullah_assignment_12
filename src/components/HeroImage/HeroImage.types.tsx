@@ -1,6 +1,5 @@
 export interface HeroImageProps {
-    children: string;
-    disabled?: boolean;
-    backgroundImage?: string;
-  }
-  
+  children: string;
+  disabled?: boolean;
+  backgroundImage?: string;
+}

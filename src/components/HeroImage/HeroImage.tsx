@@ -1,7 +1,11 @@
-import styled from 'styled-components';
-import { HeroImageProps } from './HeroImage.types';
+import React from "react";
+import styled from "styled-components";
+import { HeroImageProps } from "./HeroImage.types";
 
-const HeroWrapper = styled.div<{ disabled?: boolean; backgroundImage?: string }>`
+const HeroWrapper = styled.div<{
+  disabled?: boolean;
+  backgroundImage?: string;
+}>`
   width: 100%;
   height: 60vh;
   background-image: url(${({ backgroundImage }) => backgroundImage});
@@ -15,7 +19,7 @@ const HeroWrapper = styled.div<{ disabled?: boolean; backgroundImage?: string }>
   color: white;
   text-align: center;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   transition: opacity 0.3s;
 
   @media (max-width: 768px) {
@@ -33,10 +37,28 @@ const HeroContent = styled.div`
   border-radius: 8px;
 `;
 
-export function HeroImage({ children, disabled, backgroundImage }: HeroImageProps) {
+export function HeroImage({
+  children,
+  disabled,
+  backgroundImage,
+}: HeroImageProps) {
   return (
-    <HeroWrapper disabled={disabled} backgroundImage={backgroundImage}>
+    <HeroWrapper
+      disabled={disabled}
+      backgroundImage={backgroundImage}
+      data-testid="hero-image"
+    >
       <HeroContent>{children}</HeroContent>
     </HeroWrapper>
   );
+}
+
+// Function to check if a given string is a valid URL
+export function isValidUrl(url: string): boolean {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
 }
