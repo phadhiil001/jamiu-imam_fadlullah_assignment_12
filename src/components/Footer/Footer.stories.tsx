@@ -20,9 +20,9 @@ const Template: StoryFn<FooterProps> = (args) => <Footer {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   links: [
-    { label: "Twitter", url: "#twitter", disabled: false },
-    { label: "LinkedIn", url: "#linkedin", disabled: false },
-    { label: "GitHub", url: "#github", disabled: false },
+    { label: "Twitter", url: "https://twitter.com", disabled: false },
+    { label: "LinkedIn", url: "https://linkedin.com", disabled: false },
+    { label: "GitHub", url: "https://github.com", disabled: false },
   ],
   backgroundColor: "#1a1a1a",
   isVisible: true,
@@ -31,7 +31,7 @@ Default.args = {
 
 Default.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const twitterLink = canvas.getByTestId("footer-link-0");
+  const twitterLink = canvas.getByLabelText("Twitter");
   await userEvent.click(twitterLink);
   action("Twitter link clicked")();
 };
