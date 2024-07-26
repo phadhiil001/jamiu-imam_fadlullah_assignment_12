@@ -1,16 +1,23 @@
-import styled from 'styled-components';
-import { AboutSectionProps } from './AboutSection.types';
+import styled from "styled-components";
+import { AboutSectionProps } from "./AboutSection.types";
 
 const SectionWrapper = styled.section<{
   backgroundColor?: string;
   isVisible?: boolean;
+  disabled?: boolean;
 }>`
-  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
+  display: ${({ isVisible }) => (isVisible ? "block" : "none")};
   padding: 60px 20px;
-  background-color: ${({ backgroundColor }) => backgroundColor || '#000'};
+  background-color: ${({ backgroundColor }) => backgroundColor || "#000"};
   color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   transition: background-color 0.3s ease;
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+
+  &:hover {
+    transform: ${({ disabled }) => (disabled ? "none" : "scale(1.05)")};
+  }
 
   @media (max-width: 768px) {
     padding: 40px 20px;
@@ -64,7 +71,7 @@ const Description = styled.p`
   }
 `;
 
-const CVButton = styled.a`
+const CVButton = styled.a<{ disabled?: boolean }>`
   display: inline-block;
   padding: 10px 20px;
   background-color: #1e90ff;
@@ -72,10 +79,13 @@ const CVButton = styled.a`
   text-decoration: none;
   font-size: 18px;
   border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   &:hover {
-    background-color: #1c7cd6;
+    transform: ${({ disabled }) => (disabled ? "none" : "scale(1.05)")};
   }
 
   @media (max-width: 768px) {
@@ -83,16 +93,36 @@ const CVButton = styled.a`
   }
 `;
 
-function AboutSection({ title, description, cvLabel, cvLink, profileImage, backgroundColor, isVisible = true }: AboutSectionProps) {
+function AboutSection({
+  title,
+  description,
+  cvLabel,
+  cvLink,
+  profileImage,
+  backgroundColor,
+  isVisible = true,
+  disabled = false,
+}: AboutSectionProps) {
   return (
-    <SectionWrapper backgroundColor={backgroundColor} isVisible={isVisible}>
+    <SectionWrapper
+      backgroundColor={backgroundColor}
+      isVisible={isVisible}
+      disabled={disabled}
+    >
       <ContentWrapper>
-        <ProfileImage src={profileImage} alt="Profile" />
+        <ProfileImage
+          src={profileImage}
+          alt="Profile"
+        />
         <TextWrapper>
           <SectionTitle>{title}</SectionTitle>
           <Description>{description}</Description>
           {cvLabel && cvLink && (
-            <CVButton href={cvLink} target="_blank">
+            <CVButton
+              href={cvLink}
+              target="_blank"
+              disabled={disabled}
+            >
               {cvLabel}
             </CVButton>
           )}

@@ -11,6 +11,7 @@ export default {
   argTypes: {
     backgroundColor: { control: "color" },
     isVisible: { control: "boolean" },
+    disabled: { control: "boolean" },
   },
 } as Meta;
 
@@ -43,6 +44,7 @@ Default.args = {
   ],
   backgroundColor: "#000",
   isVisible: true,
+  disabled: false,
 };
 
 Default.play = async ({ canvasElement }) => {
@@ -56,4 +58,10 @@ export const Hidden = Template.bind({});
 Hidden.args = {
   ...Default.args,
   isVisible: false,
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Default.args,
+  disabled: true,
 };

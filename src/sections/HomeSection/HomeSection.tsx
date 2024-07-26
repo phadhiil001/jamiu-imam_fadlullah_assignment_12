@@ -4,14 +4,19 @@ import { HomeSectionProps } from "./HomeSection.types";
 const SectionWrapper = styled.section<{
   backgroundColor?: string;
   isVisible?: boolean;
+  disabled?: boolean;
 }>`
-  display: ${({ isVisible }) => (isVisible ? "block" : "none")};
   padding: 60px 20px;
   background-color: ${({ backgroundColor }) => backgroundColor || "#000"};
-  color: #fff;
+  visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   text-align: center;
   font-family: "Poppins", sans-serif;
-  transition: background-color 0.3s ease;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+
+  &:hover {
+    transform: ${({ disabled }) => (disabled ? "none" : "scale(1.05)")};
+  }
 
   @media (max-width: 768px) {
     padding: 40px 20px;
@@ -59,14 +64,15 @@ const SocialLinks = styled.div`
   margin-top: 20px;
 `;
 
-const SocialLink = styled.a`
+const SocialLink = styled.a<{ disabled?: boolean }>`
   color: #fff;
   font-size: 24px;
   text-decoration: none;
   transition: color 0.3s ease;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   &:hover {
-    color: #ff0077;
+    transform: ${({ disabled }) => (disabled ? "none" : "scale(1.05)")};
   }
 `;
 
@@ -106,11 +112,13 @@ function HomeSection({
   profileImage,
   backgroundColor,
   isVisible = true,
+  disabled = false,
 }: HomeSectionProps) {
   return (
     <SectionWrapper
       backgroundColor={backgroundColor}
       isVisible={isVisible}
+      disabled={disabled}
     >
       <ContentWrapper>
         <TextContent>
@@ -126,6 +134,7 @@ function HomeSection({
                 href={link.url}
                 target="_blank"
                 aria-label={link.icon}
+                disabled={disabled}
               >
                 <i className={`fab fa-${link.icon}`} />
               </SocialLink>

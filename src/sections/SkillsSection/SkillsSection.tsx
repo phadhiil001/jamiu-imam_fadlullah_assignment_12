@@ -1,17 +1,24 @@
-import styled from 'styled-components';
-import { SkillsSectionProps } from './SkillsSection.types';
+import styled from "styled-components";
+import { SkillsSectionProps } from "./SkillsSection.types";
 
 const SectionWrapper = styled.section<{
   backgroundColor?: string;
   isVisible?: boolean;
+  disabled?: boolean;
 }>`
-  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
+  display: ${({ isVisible }) => (isVisible ? "block" : "none")};
   padding: 60px 20px;
-  background-color: ${({ backgroundColor }) => backgroundColor || '#000'};
+  background-color: ${({ backgroundColor }) => backgroundColor || "#000"};
   color: #fff;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   transition: background-color 0.3s ease;
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+
+  &:hover {
+    transform: ${({ disabled }) => (disabled ? "none" : "scale(1.05)")};
+  }
 
   @media (max-width: 768px) {
     padding: 40px 20px;
@@ -36,7 +43,7 @@ const SkillsWrapper = styled.div`
   margin-top: 20px;
 `;
 
-const SkillCard = styled.div`
+const SkillCard = styled.div<{ disabled?: boolean }>`
   background-color: #1a1a1a;
   padding: 20px;
   border-radius: 10px;
@@ -46,9 +53,11 @@ const SkillCard = styled.div`
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease;
+  pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   &:hover {
-    transform: scale(1.05);
+    transform: ${({ disabled }) => (disabled ? "none" : "scale(1.05)")};
   }
 
   @media (max-width: 768px) {
@@ -62,14 +71,30 @@ const SkillImage = styled.img`
   max-height: 100%;
 `;
 
-function SkillsSection({ title, skills, backgroundColor, isVisible = true }: SkillsSectionProps) {
+function SkillsSection({
+  title,
+  skills,
+  backgroundColor,
+  isVisible = true,
+  disabled = false,
+}: SkillsSectionProps) {
   return (
-    <SectionWrapper backgroundColor={backgroundColor} isVisible={isVisible}>
+    <SectionWrapper
+      backgroundColor={backgroundColor}
+      isVisible={isVisible}
+      disabled={disabled}
+    >
       <SectionTitle>{title}</SectionTitle>
       <SkillsWrapper>
         {skills.map((skill, index) => (
-          <SkillCard key={index}>
-            <SkillImage src={skill.image} alt={skill.name} />
+          <SkillCard
+            key={index}
+            disabled={disabled}
+          >
+            <SkillImage
+              src={skill.image}
+              alt={skill.name}
+            />
           </SkillCard>
         ))}
       </SkillsWrapper>

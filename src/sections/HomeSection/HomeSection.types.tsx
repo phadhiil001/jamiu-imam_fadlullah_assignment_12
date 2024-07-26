@@ -11,4 +11,5 @@ export interface HomeSectionProps {
   profileImage: string;
   backgroundColor?: string;
   isVisible?: boolean;
+  disabled?: boolean;
 }

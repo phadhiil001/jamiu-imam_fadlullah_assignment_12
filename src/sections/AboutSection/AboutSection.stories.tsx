@@ -10,6 +10,7 @@ export default {
   argTypes: {
     backgroundColor: { control: "color" },
     isVisible: { control: "boolean" },
+    disabled: { control: "boolean" },
   },
 } as Meta;
 
@@ -27,12 +28,19 @@ Default.args = {
   profileImage: "https://via.placeholder.com/300",
   backgroundColor: "#000",
   isVisible: true,
+  disabled: false,
 };
 
 Default.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const cvButton = canvas.getByText("Download My CV");
   await userEvent.click(cvButton);
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Default.args,
+  disabled: true,
 };
 
 export const Hidden = Template.bind({});
