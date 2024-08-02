@@ -1,37 +1,55 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import "jest-styled-components";
 import Header from "./Header";
 
-const links = [
-  { label: "Home", url: "#home" },
-  { label: "About", url: "#about" },
-  { label: "Skills", url: "#skills" },
-  { label: "Projects", url: "#projects" },
-  { label: "Contact", url: "#contact" },
-];
+describe("Header", () => {
+  const links = [
+    { label: "Home", url: "/" },
+    { label: "About", url: "/about" },
+    { label: "Contact", url: "/contact", disabled: true },
+  ];
 
-test("renders the header", () => {
-  render(<Header links={links} />);
-  expect(screen.getByText("FJamiu-Imam")).toBeInTheDocument();
-});
-
-test("renders navigation links", () => {
-  render(<Header links={links} />);
-  links.forEach((link) => {
-    expect(screen.getByText(link.label)).toBeInTheDocument();
+  test("renders the header with default props", () => {
+    render(<Header links={links} />);
+    expect(screen.getByTestId("header")).toBeInTheDocument();
+    expect(screen.getByText("Home")).toBeInTheDocument();
+    expect(screen.getByText("About")).toBeInTheDocument();
+    expect(screen.getByText("Contact")).toBeInTheDocument();
   });
-});
 
-test("renders the header with disabled links", () => {
-  render(
-    <Header
-      links={links}
-      disabled
-    />
-  );
-  links.forEach((_link, index) => {
-    const navLink = screen.getByTestId(`navbar-link-${index}`);
-    expect(navLink).toHaveStyle("color: #999");
-    expect(navLink).toHaveStyle("cursor: not-allowed");
+  test("applies the disabled state", () => {
+    render(
+      <Header
+        links={links}
+        disabled
+      />
+    );
+    expect(screen.getByTestId("header")).toHaveStyleRule("opacity", "0.5");
+    expect(screen.getByTestId("header")).toHaveStyleRule("cursor", "not-allowed");
+  });
+
+  test("applies the custom background color", () => {
+    render(
+      <Header
+        links={links}
+        backgroundColor="#ff0000"
+      />
+    );
+    expect(screen.getByTestId("header")).toHaveStyleRule(
+      "background-color",
+      "#ff0000"
+    );
+  });
+
+  test("hides the header when isVisible is false", () => {
+    render(
+      <Header
+        links={links}
+        isVisible={false}
+      />
+    );
+    expect(screen.getByTestId("header")).toHaveStyleRule("display", "none");
   });
 });

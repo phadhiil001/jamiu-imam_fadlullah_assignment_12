@@ -3,17 +3,17 @@ import styled from "styled-components";
 import { HeaderProps } from "./Header.types";
 
 const HeaderWrapper = styled.header<{
-  backgroundColor?: string;
-  isVisible?: boolean;
-  disabled?: boolean;
+  $backgroundColor?: string;
+  $isVisible?: boolean;
+  $disabled?: boolean;
 }>`
-  display: ${({ isVisible }) => (isVisible ? "flex" : "none")};
+  display: ${({ $isVisible }) => ($isVisible ? "flex" : "none")};
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: ${({ backgroundColor }) => backgroundColor || "#1a1a1a"};
-  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "auto")};
+  background-color: ${({ $backgroundColor }) => $backgroundColor || "#1a1a1a"};
+  opacity: ${({ $disabled }) => ($disabled ? 0.5 : 1)};
+  cursor: ${({ $disabled }) => ($disabled ? "not-allowed" : "auto")};
   font-family: "Poppins", sans-serif;
   transition:
     background-color 0.3s ease,
@@ -35,16 +35,16 @@ const Nav = styled.nav`
   }
 `;
 
-const NavLink = styled.a<{ disabled?: boolean }>`
-  color: ${({ disabled }) => (disabled ? "#999" : "#fff")};
+const NavLink = styled.a<{ $disabled?: boolean }>`
+  color: ${({ $disabled }) => ($disabled ? "#999" : "#fff")};
   text-decoration: none;
   margin-right: 20px;
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  cursor: ${({ $disabled }) => ($disabled ? "not-allowed" : "pointer")};
   font-family: "Poppins", sans-serif;
   transition: color 0.3s ease;
 
   &:hover {
-    text-decoration: ${({ disabled }) => (disabled ? "none" : "underline")};
+    text-decoration: ${({ $disabled }) => ($disabled ? "none" : "underline")};
   }
 
   @media (max-width: 768px) {
@@ -73,9 +73,9 @@ function Header({
 
   return (
     <HeaderWrapper
-      backgroundColor={backgroundColor}
-      isVisible={isVisible}
-      disabled={disabled}
+      $backgroundColor={backgroundColor}
+      $isVisible={isVisible}
+      $disabled={disabled}
       data-testid="header"
     >
       <Logo>FJamiu-Imam</Logo>
@@ -85,7 +85,7 @@ function Header({
             key={index}
             href={link.url}
             onClick={handleLinkClick}
-            disabled={link.disabled || disabled}
+            $disabled={link.disabled || disabled}
             data-testid={`navbar-link-${index}`}
           >
             {link.label}
