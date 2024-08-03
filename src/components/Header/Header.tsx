@@ -10,7 +10,11 @@ const HeaderWrapper = styled.header<{
   display: ${({ $isVisible }) => ($isVisible ? "flex" : "none")};
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 20px 60px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000; /* Ensure the header is above other content */
   background-color: ${({ $backgroundColor }) => $backgroundColor || "#1a1a1a"};
   opacity: ${({ $disabled }) => ($disabled ? 0.5 : 1)};
   cursor: ${({ $disabled }) => ($disabled ? "not-allowed" : "auto")};
@@ -22,6 +26,19 @@ const HeaderWrapper = styled.header<{
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
+    padding: 15px 20px;
+  }
+`;
+
+const Logo = styled.a`
+  font-size: 24px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover {
+    color: #ff0077;
   }
 `;
 
@@ -39,24 +56,25 @@ const NavLink = styled.a<{ $disabled?: boolean }>`
   color: ${({ $disabled }) => ($disabled ? "#999" : "#fff")};
   text-decoration: none;
   margin-right: 20px;
+  padding: 10px 15px;
   cursor: ${({ $disabled }) => ($disabled ? "not-allowed" : "pointer")};
   font-family: "Poppins", sans-serif;
-  transition: color 0.3s ease;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
+  border-radius: 5px;
 
   &:hover {
-    text-decoration: ${({ $disabled }) => ($disabled ? "none" : "underline")};
+    background-color: ${({ $disabled }) => ($disabled ? "none" : "#333")};
+    color: ${({ $disabled }) => ($disabled ? "#999" : "#ff0077")};
   }
 
   @media (max-width: 768px) {
     margin-right: 0;
     margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
   }
-`;
-
-const Logo = styled.div`
-  font-size: 24px;
-  color: #fff;
-  font-family: "Poppins", sans-serif;
 `;
 
 function Header({
@@ -68,7 +86,9 @@ function Header({
   const handleLinkClick = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
-    event.preventDefault(); // Prevent default behavior in Storybook
+    if (disabled) {
+      event.preventDefault();
+    }
   };
 
   return (
@@ -78,7 +98,7 @@ function Header({
       $disabled={disabled}
       data-testid="header"
     >
-      <Logo>FJamiu-Imam</Logo>
+      <Logo href="#home">FJamiu-Imam</Logo>
       <Nav>
         {links.map((link, index) => (
           <NavLink
@@ -87,6 +107,7 @@ function Header({
             onClick={handleLinkClick}
             $disabled={link.disabled || disabled}
             data-testid={`navbar-link-${index}`}
+            aria-label={link.label}
           >
             {link.label}
           </NavLink>

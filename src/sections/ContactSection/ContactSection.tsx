@@ -7,85 +7,89 @@ const SectionWrapper = styled.section<{
   disabled?: boolean;
 }>`
   display: ${({ isVisible }) => (isVisible ? "block" : "none")};
-  padding: 60px 20px;
+  padding: 8rem 1.5rem 5rem 1.5rem;
+  width: 100%;
+  margin-top: 1px;
   background-color: ${({ backgroundColor }) => backgroundColor || "#000"};
   color: #fff;
   text-align: center;
   font-family: "Poppins", sans-serif;
   transition: background-color 0.3s ease;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "auto")};
 
-  &:hover {
-    transform: ${({ disabled }) => (disabled ? "none" : "scale(1.05)")};
-  }
   @media (max-width: 768px) {
     padding: 40px 20px;
   }
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 32px;
-  margin-bottom: 20px;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
   color: #ff0077;
 
   @media (max-width: 768px) {
-    font-size: 24px;
+    font-size: 2rem;
   }
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
-  justify-content: space-around;
-  gap: 40px;
-  margin-top: 20px;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
   flex-wrap: wrap;
 
   @media (max-width: 1024px) {
     flex-direction: column;
+    align-items: center;
     text-align: center;
-    gap: 20px;
+    gap: 1.5rem;
   }
 `;
 
 const ContactCard = styled.div`
   background-color: #1a1a1a;
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-  max-width: 100%;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 24rem;
   box-sizing: border-box;
-  flex-shrink: 0;
   text-align: left;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 1024px) {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
   }
 `;
 
 const CardImage = styled.img`
   width: 100%;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const CardTitle = styled.h3`
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
   color: #fff;
 `;
 
 const CardText = styled.p`
-  font-size: 16px;
+  font-size: 1rem;
   color: #ccc;
+  margin-bottom: 0.5rem;
 `;
 
 const SocialLinks = styled.div`
   display: flex;
-  justify-content: start;
-  gap: 10px;
-  margin-top: 10px;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
 
   @media (max-width: 1024px) {
     justify-content: center;
@@ -94,7 +98,7 @@ const SocialLinks = styled.div`
 
 const SocialLink = styled.a`
   color: #fff;
-  font-size: 24px;
+  font-size: 1.5rem;
   text-decoration: none;
   transition: color 0.3s ease;
 
@@ -105,57 +109,59 @@ const SocialLink = styled.a`
 
 const FormWrapper = styled.div`
   background-color: #1a1a1a;
-  padding: 20px;
-  border-radius: 10px;
-  width: 500px;
-  max-width: 100%;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 45rem;
   box-sizing: border-box;
 
   @media (max-width: 1024px) {
     width: 100%;
+    max-width: 24rem;
   }
 `;
 
 const FormField = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 `;
 
 const Label = styled.label`
   display: block;
-  font-size: 16px;
-  margin-bottom: 5px;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
   color: #fff;
 `;
 
 const Input = styled.input`
-  width: 80%;
-  padding: 10px;
+  width: 100%;
+  padding: 0.75rem;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 0.5rem;
+  font-size: 1rem;
   color: #000;
 `;
 
 const Textarea = styled.textarea`
-  width: 80%;
-  padding: 10px;
+  width: 100%;
+  padding: 0.75rem;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 0.5rem;
+  font-size: 1rem;
   color: #000;
 `;
 
 const SubmitButton = styled.button`
   display: inline-block;
-  padding: 10px 20px;
+  padding: 0.75rem 1.5rem;
   background-color: #1e90ff;
   color: #fff;
   text-decoration: none;
-  font-size: 16px;
-  border-radius: 5px;
+  font-size: 1.125rem;
+  border-radius: 0.5rem;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     background-color: #1c7cd6;
@@ -171,6 +177,7 @@ function ContactSection({
 }: ContactSectionProps) {
   return (
     <SectionWrapper
+      id="contact"
       backgroundColor={backgroundColor}
       isVisible={isVisible}
       disabled={disabled}
@@ -180,7 +187,7 @@ function ContactSection({
       <ContentWrapper>
         <ContactCard>
           <CardImage
-            src={contactInfo.image || "https://via.placeholder.com/300"}
+            src={"./images/first.png"}
             alt="Contact"
           />
           <CardTitle>{contactInfo.name || "Name"}</CardTitle>

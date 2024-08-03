@@ -3,7 +3,7 @@ export interface AboutSectionProps {
   description: string;
   cvLabel?: string;
   cvLink?: string;
-  profileImage: string;
+  profileImage?: string;
   backgroundColor?: string;
   isVisible?: boolean;
   disabled?: boolean;

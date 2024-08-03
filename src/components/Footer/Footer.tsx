@@ -11,6 +11,8 @@ const FooterWrapper = styled.footer<{
   padding: 20px 40px;
   background-color: ${({ $backgroundColor }) => $backgroundColor || "#1a1a1a"};
   color: #fff;
+  width: 100%;
+  margin-bottom: 40px; /* Add spacing between sections */
   opacity: ${({ $disabled }) => ($disabled ? 0.5 : 1)};
   cursor: ${({ $disabled }) => ($disabled ? "not-allowed" : "auto")};
   font-family: "Poppins", sans-serif;
