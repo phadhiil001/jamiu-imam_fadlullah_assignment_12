@@ -3,6 +3,7 @@ import { action } from "@storybook/addon-actions";
 import HomeSection from "./HomeSection";
 import { HomeSectionProps } from "./HomeSection.types";
 import { userEvent, within } from "@storybook/test";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 export default {
   title: "Sections/HomeSection",
@@ -24,11 +25,11 @@ Default.args = {
   description:
     "I design and code beautifully simple things, and I love what I do. I use animation as a third dimension by which I bring my creations to life.",
   socialLinks: [
-    { icon: "twitter", url: "https://twitter.com" },
-    { icon: "instagram", url: "https://instagram.com" },
-    { icon: "linkedin", url: "https://linkedin.com" },
+    { icon: "twitter", url: "#" },
+    { icon: "instagram", url: "#" },
+    { icon: "linkedin", url: "#" },
   ],
-  profileImage: "https://via.placeholder.com/300",
+  profileImage: "./images/home1.png",
   backgroundColor: "#000",
   isVisible: true,
   disabled: false,

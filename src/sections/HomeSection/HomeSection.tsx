@@ -1,15 +1,16 @@
+import React from "react";
 import styled from "styled-components";
 import { HomeSectionProps } from "./HomeSection.types";
 
 const SectionWrapper = styled.section<{
   backgroundColor?: string;
-  isVisible?: boolean;
+  $isVisible?: boolean;
   disabled?: boolean;
 }>`
   padding: 7.6rem 1.5rem 5rem 1.5rem; /* Adjusted padding */
   width: 100%;
   background-color: ${({ backgroundColor }) => backgroundColor || "#000"};
-  visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
+  visibility: ${({ $isVisible }) => ($isVisible ? "visible" : "hidden")};
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   text-align: left; /* Changed text alignment to left */
   font-family: "Poppins", sans-serif;
@@ -120,8 +121,9 @@ function HomeSection({
     <SectionWrapper
       id="home"
       backgroundColor={backgroundColor}
-      isVisible={isVisible}
+      $isVisible={isVisible}
       disabled={disabled}
+      aria-label="home"
     >
       <ContentWrapper>
         <TextContent>

@@ -24,8 +24,8 @@ Default.args = {
   description:
     "I am a passionate developer who loves to create beautiful and functional web applications. I have experience in various technologies and enjoy learning new skills.",
   cvLabel: "Download My CV",
-  cvLink: "path/to/cv.pdf",
-  profileImage: "https://via.placeholder.com/300",
+  cvLink: "#",
+  profileImage: "./images/about.jpg",
   backgroundColor: "#000",
   isVisible: true,
   disabled: false,

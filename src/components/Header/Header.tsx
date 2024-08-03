@@ -30,15 +30,17 @@ const HeaderWrapper = styled.header<{
   }
 `;
 
-const Logo = styled.a`
+const Logo = styled.a<{ $disabled?: boolean }>`
   font-size: 24px;
-  color: #fff;
+  color: ${({ $disabled }) => ($disabled ? "#999" : "#fff")};
   font-family: "Poppins", sans-serif;
   font-weight: bold;
   text-decoration: none;
+  cursor: ${({ $disabled }) => ($disabled ? "not-allowed" : "pointer")};
 
   &:hover {
-    color: #ff0077;
+    background-color: ${({ $disabled }) => ($disabled ? "none" : "#333")};
+    color: ${({ $disabled }) => ($disabled ? "#999" : "#ff0077")};
   }
 `;
 
@@ -83,14 +85,6 @@ function Header({
   isVisible = true,
   disabled = false,
 }: HeaderProps) {
-  const handleLinkClick = (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
-    if (disabled) {
-      event.preventDefault();
-    }
-  };
-
   return (
     <HeaderWrapper
       $backgroundColor={backgroundColor}
@@ -98,13 +92,17 @@ function Header({
       $disabled={disabled}
       data-testid="header"
     >
-      <Logo href="#home">FJamiu-Imam</Logo>
+      <Logo
+        href="#home"
+        $disabled={disabled}
+      >
+        FJamiu-Imam
+      </Logo>
       <Nav>
         {links.map((link, index) => (
           <NavLink
             key={index}
             href={link.url}
-            onClick={handleLinkClick}
             $disabled={link.disabled || disabled}
             data-testid={`navbar-link-${index}`}
             aria-label={link.label}

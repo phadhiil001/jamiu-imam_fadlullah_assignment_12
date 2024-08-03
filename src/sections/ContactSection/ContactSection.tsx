@@ -1,12 +1,13 @@
+import React from "react";
 import styled from "styled-components";
 import { ContactSectionProps } from "./ContactSection.types";
 
 const SectionWrapper = styled.section<{
   backgroundColor?: string;
-  isVisible?: boolean;
+  $isVisible?: boolean;
   disabled?: boolean;
 }>`
-  display: ${({ isVisible }) => (isVisible ? "block" : "none")};
+  display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
   padding: 8rem 1.5rem 5rem 1.5rem;
   width: 100%;
   margin-top: 1px;
@@ -179,9 +180,10 @@ function ContactSection({
     <SectionWrapper
       id="contact"
       backgroundColor={backgroundColor}
-      isVisible={isVisible}
+      $isVisible={isVisible}
       disabled={disabled}
       data-testid="contact-section"
+      aria-label="contact"
     >
       <SectionTitle>{title}</SectionTitle>
       <ContentWrapper>

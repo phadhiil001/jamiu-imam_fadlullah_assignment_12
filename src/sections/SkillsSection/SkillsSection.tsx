@@ -1,12 +1,13 @@
+import React from "react";
 import styled from "styled-components";
 import { SkillsSectionProps } from "./SkillsSection.types";
 
 const SectionWrapper = styled.section<{
   backgroundColor?: string;
-  isVisible?: boolean;
+  $isVisible?: boolean;
   disabled?: boolean;
 }>`
-  display: ${({ isVisible }) => (isVisible ? "block" : "none")};
+  display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
   padding: 8rem 1.5rem 5rem 1.5rem;
   width: 100%;
   margin-top: 1px;
@@ -115,8 +116,9 @@ function SkillsSection({
     <SectionWrapper
       id="skills"
       backgroundColor={backgroundColor}
-      isVisible={isVisible}
+      $isVisible={isVisible}
       disabled={disabled}
+      aria-label="skill"
     >
       <SectionTitle>{title}</SectionTitle>
       <SkillsWrapper>

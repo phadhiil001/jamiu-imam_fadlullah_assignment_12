@@ -3,6 +3,7 @@ import { action } from "@storybook/addon-actions";
 import ContactSection from "./ContactSection";
 import { ContactSectionProps } from "./ContactSection.types";
 import { userEvent, within } from "@storybook/test";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 export default {
   title: "Sections/ContactSection",
@@ -22,7 +23,7 @@ export const Default = Template.bind({});
 Default.args = {
   title: "Contact With Me",
   contactInfo: {
-    image: "https://via.placeholder.com/300",
+    image: "./images/first.png",
     name: "Fadlullah Jamiu-Imam",
     position: "Full-Stack Web Developer",
     description:

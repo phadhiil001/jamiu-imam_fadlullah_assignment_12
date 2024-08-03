@@ -12,7 +12,7 @@ const FooterWrapper = styled.footer<{
   background-color: ${({ $backgroundColor }) => $backgroundColor || "#1a1a1a"};
   color: #fff;
   width: 100%;
-  margin-bottom: 40px; /* Add spacing between sections */
+  margin-bottom: 40px;
   opacity: ${({ $disabled }) => ($disabled ? 0.5 : 1)};
   cursor: ${({ $disabled }) => ($disabled ? "not-allowed" : "auto")};
   font-family: "Poppins", sans-serif;
@@ -62,8 +62,6 @@ function Footer({
   ) => {
     if (disabled) {
       event.preventDefault();
-    } else {
-      event.preventDefault(); // Prevent navigation during tests
     }
   };
 
@@ -80,6 +78,7 @@ function Footer({
           <SocialLink
             key={index}
             href={link.url}
+            target="_blank"
             onClick={handleLinkClick}
             $disabled={link.disabled || disabled}
             data-testid={`footer-link-${index}`}

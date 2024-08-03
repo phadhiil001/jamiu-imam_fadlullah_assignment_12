@@ -1,4 +1,6 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import HomeSection from "./HomeSection";
 
 const props = {
@@ -11,7 +13,7 @@ const props = {
     { icon: "instagram", url: "https://instagram.com" },
     { icon: "linkedin", url: "https://linkedin.com" },
   ],
-  profileImage: "path/to/your/profile/image.jpg",
+  profileImage: "./images/home1.png",
 };
 
 test("renders the HomeSection", () => {

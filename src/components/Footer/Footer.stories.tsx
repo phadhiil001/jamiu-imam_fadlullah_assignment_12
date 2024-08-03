@@ -3,6 +3,7 @@ import { action } from "@storybook/addon-actions";
 import Footer from "./Footer";
 import { FooterProps } from "./Footer.types";
 import { userEvent, within } from "@storybook/test";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 export default {
   title: "Components/Footer",
@@ -32,8 +33,14 @@ Default.args = {
 Default.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const twitterLink = canvas.getByLabelText("Twitter");
+
+  // Prevent default link behavior in Storybook
+  twitterLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    action("Twitter link clicked")();
+  });
+
   await userEvent.click(twitterLink);
-  action("Twitter link clicked")();
 };
 
 export const Hidden = Template.bind({});

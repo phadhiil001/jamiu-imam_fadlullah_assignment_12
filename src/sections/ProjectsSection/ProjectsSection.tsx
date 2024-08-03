@@ -1,11 +1,12 @@
+import React from "react";
 import styled from "styled-components";
 import { ProjectsSectionProps } from "./ProjectsSection.types";
 
 const SectionWrapper = styled.section<{
   backgroundColor?: string;
-  isVisible?: boolean;
+  $isVisible?: boolean;
 }>`
-  display: ${({ isVisible }) => (isVisible ? "block" : "none")};
+  display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
   padding: 8rem 1.5rem 5rem 1.5rem;
   width: 100%;
   margin-top: 1px;
@@ -175,7 +176,7 @@ function ProjectsSection({
     <SectionWrapper
       id="projects"
       backgroundColor={backgroundColor}
-      isVisible={isVisible}
+      $isVisible={isVisible}
     >
       <SectionTitle>{title}</SectionTitle>
       <ProjectsWrapper>
@@ -183,6 +184,7 @@ function ProjectsSection({
           <ProjectCard
             key={index}
             disabled={project.disabled}
+            aria-label="project"
           >
             <ProjectImage
               src={project.image}

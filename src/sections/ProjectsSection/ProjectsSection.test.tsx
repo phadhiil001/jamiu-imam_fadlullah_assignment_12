@@ -1,4 +1,6 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import ProjectsSection from "./ProjectsSection";
 
 const props = {
@@ -7,14 +9,20 @@ const props = {
     {
       title: "Project One",
       description: "This is the first project description.",
-      image: "https://via.placeholder.com/300",
-      link: "https://example.com",
+      image: "./images/zaytoon1.png",
+      link: "https://google.com",
     },
     {
       title: "Project Two",
       description: "This is the second project description.",
-      image: "https://via.placeholder.com/300",
-      link: "https://example.com",
+      image: "./images/artcity.png",
+      link: "https://google.com",
+    },
+    {
+      title: "Project Three",
+      description: "This is the third project description.",
+      image: "./images/first.png",
+      link: "https://google.com",
     },
   ],
 };
@@ -30,8 +38,10 @@ test("renders the ProjectsSection", () => {
 
 test("renders project links", () => {
   render(<ProjectsSection {...props} />);
-  props.projects.forEach((project) => {
-    const link = screen.getByText("View Project").closest("a");
-    expect(link).toHaveAttribute("href", project.link);
+  const links = screen
+    .getAllByText("View Project")
+    .map((element) => element.closest("a"));
+  links.forEach((link, index) => {
+    expect(link).toHaveAttribute("href", props.projects[index].link);
   });
 });
