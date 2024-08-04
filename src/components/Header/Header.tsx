@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { HeaderProps } from "./Header.types";
 
@@ -44,13 +44,14 @@ const Logo = styled.a<{ $disabled?: boolean }>`
   }
 `;
 
-const Nav = styled.nav`
+const Nav = styled.nav<{ isOpen: boolean }>`
   display: flex;
 
   @media (max-width: 768px) {
     flex-direction: column;
     width: 100%;
     margin-top: 10px;
+    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
   }
 `;
 
@@ -79,12 +80,39 @@ const NavLink = styled.a<{ $disabled?: boolean }>`
   }
 `;
 
+const Hamburger = styled.div`
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  span {
+    height: 3px;
+    width: 25px;
+    background: #fff;
+    margin-bottom: 4px;
+    border-radius: 5px;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-self: flex-end;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+`;
+
 function Header({
   links,
   backgroundColor,
   isVisible = true,
   disabled = false,
 }: HeaderProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <HeaderWrapper
       $backgroundColor={backgroundColor}
@@ -98,7 +126,12 @@ function Header({
       >
         FJamiu-Imam
       </Logo>
-      <Nav>
+      <Hamburger onClick={handleToggle}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </Hamburger>
+      <Nav isOpen={isOpen}>
         {links.map((link, index) => (
           <NavLink
             key={index}

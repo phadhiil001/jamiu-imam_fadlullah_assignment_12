@@ -8,6 +8,7 @@ const SectionWrapper = styled.section<{
   disabled?: boolean;
 }>`
   padding: 7.6rem 1.5rem 5rem 1.5rem; /* Adjusted padding */
+  padding-top: 120px; /* Added top padding */
   width: 100%;
   background-color: ${({ backgroundColor }) => backgroundColor || "#000"};
   visibility: ${({ $isVisible }) => ($isVisible ? "visible" : "hidden")};
@@ -18,6 +19,7 @@ const SectionWrapper = styled.section<{
 
   @media (max-width: 768px) {
     padding: 40px 20px;
+    padding-top: 150px; /* Adjusted top padding for smaller screens */
   }
 `;
 
@@ -86,6 +88,7 @@ const ProfileImage = styled.img`
   @media (max-width: 768px) {
     width: 100%;
     max-width: 300px;
+    display: none;
   }
 `;
 

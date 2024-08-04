@@ -105,7 +105,7 @@ function App() {
         title="About Me"
         description=""
         cvLabel="Download CV"
-        cvLink="/path/to/cv.pdf"
+        cvLink="./images/FSWD.pdf"
         profileImage="./images/about.jpg"
       />
       <ProjectsSection
