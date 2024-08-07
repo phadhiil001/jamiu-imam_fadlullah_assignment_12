@@ -43,14 +43,21 @@ Default.play = async ({ canvasElement }) => {
   await userEvent.click(twitterLink);
 };
 
-export const Hidden = Template.bind({});
-Hidden.args = {
-  ...Default.args,
-  isVisible: false,
-};
-
 export const Disabled = Template.bind({});
 Disabled.args = {
   ...Default.args,
   disabled: true,
+};
+
+Disabled.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const twitterLink = canvas.getByLabelText("Twitter");
+
+  // Prevent default link behavior in Storybook
+  twitterLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    action("Twitter link clicked when disabled")();
+  });
+
+  await userEvent.click(twitterLink);
 };

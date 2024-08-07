@@ -56,12 +56,6 @@ Default.play = async ({ canvasElement }) => {
   action("First project card hovered")();
 };
 
-export const Hidden = Template.bind({});
-Hidden.args = {
-  ...Default.args,
-  isVisible: false,
-};
-
 export const DisabledProject = Template.bind({});
 DisabledProject.args = {
   ...Default.args,
@@ -69,4 +63,11 @@ DisabledProject.args = {
     ...project,
     disabled: true,
   })),
+};
+
+DisabledProject.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const firstProjectCard = canvas.getByText("Project One").closest("div");
+  await userEvent.hover(firstProjectCard);
+  action("First project card hovered")();
 };

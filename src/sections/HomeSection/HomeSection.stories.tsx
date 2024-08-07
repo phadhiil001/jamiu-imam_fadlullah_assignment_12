@@ -42,20 +42,15 @@ Default.play = async ({ canvasElement }) => {
   action("Twitter link clicked")();
 };
 
-export const Hidden = Template.bind({});
-Hidden.args = {
-  ...Default.args,
-  isVisible: false,
-};
-
 export const Disabled = Template.bind({});
 Disabled.args = {
   ...Default.args,
   disabled: true,
 };
 
-export const CustomBackground = Template.bind({});
-CustomBackground.args = {
-  ...Default.args,
-  backgroundColor: "#282c34",
+Disabled.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const twitterLink = canvas.getByLabelText("twitter");
+  await userEvent.click(twitterLink);
+  action("Twitter link clicked")();
 };

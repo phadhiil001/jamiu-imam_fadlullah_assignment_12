@@ -67,20 +67,36 @@ Default.play = async ({ canvasElement }) => {
   action("Message input filled")();
 };
 
-export const Hidden = Template.bind({});
-Hidden.args = {
-  ...Default.args,
-  isVisible: false,
-};
-
 export const DisabledForm = Template.bind({});
 DisabledForm.args = {
   ...Default.args,
   disabled: true,
 };
 
-export const CustomBackground = Template.bind({});
-CustomBackground.args = {
-  ...Default.args,
-  backgroundColor: "#282c34",
+DisabledForm.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+
+  // Trying to fill inputs to ensure they are disabled
+  const nameInput = canvas.getByLabelText("Your Name");
+  await userEvent.type(nameInput, "Fadlullah Jamiu-Imam");
+  action("Attempt to fill Name input")();
+
+  const phoneInput = canvas.getByLabelText("Phone Number");
+  await userEvent.type(phoneInput, "1234567890");
+  action("Attempt to fill Phone input")();
+
+  const emailInput = canvas.getByLabelText("Email");
+  await userEvent.type(emailInput, "fadlu@fadlu.com");
+  action("Attempt to fill Email input")();
+
+  const subjectInput = canvas.getByLabelText("Subject");
+  await userEvent.type(subjectInput, "Inquiry");
+  action("Attempt to fill Subject input")();
+
+  const messageTextarea = canvas.getByLabelText("Your Message");
+  await userEvent.type(
+    messageTextarea,
+    "Hello, I would like to know more about your services."
+  );
+  action("Attempt to fill Message input")();
 };

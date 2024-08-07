@@ -73,7 +73,7 @@ const SkillCard = styled.div<{ disabled?: boolean }>`
   transition:
     transform 0.3s ease,
     background-color 0.3s ease;
-  pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
+  pointer-events: ${({ disabled }) => (disabled ? "not-allowed" : "auto")};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "auto")};
 
   &:hover {

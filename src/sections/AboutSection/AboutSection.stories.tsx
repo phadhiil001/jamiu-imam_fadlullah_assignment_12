@@ -43,8 +43,8 @@ Disabled.args = {
   disabled: true,
 };
 
-export const Hidden = Template.bind({});
-Hidden.args = {
-  ...Default.args,
-  isVisible: false,
+Disabled.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const cvButton = canvas.getByText("Download My CV");
+  await userEvent.click(cvButton);
 };

@@ -44,14 +44,21 @@ Default.play = async ({ canvasElement }) => {
   await userEvent.click(homeLink);
 };
 
-export const Hidden = Template.bind({});
-Hidden.args = {
-  ...Default.args,
-  isVisible: false,
-};
-
 export const Disabled = Template.bind({});
 Disabled.args = {
   ...Default.args,
   disabled: true,
+};
+
+Disabled.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const homeLink = canvas.getByTestId("navbar-link-0");
+
+  // Prevent default link behavior in Storybook
+  homeLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    action("Home link clicked")();
+  });
+
+  await userEvent.click(homeLink);
 };

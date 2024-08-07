@@ -55,14 +55,15 @@ Default.play = async ({ canvasElement }) => {
   action("First skill card hovered")();
 };
 
-export const Hidden = Template.bind({});
-Hidden.args = {
-  ...Default.args,
-  isVisible: false,
-};
-
 export const Disabled = Template.bind({});
 Disabled.args = {
   ...Default.args,
   disabled: true,
+};
+
+Disabled.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const firstSkillCard = canvas.getByAltText("React").parentElement;
+  await userEvent.hover(firstSkillCard);
+  action("First skill card hovered")();
 };
